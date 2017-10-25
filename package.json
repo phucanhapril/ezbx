@@ -8,7 +8,14 @@
   "bin": {
     "ezbx": "bin/index.js"
   },
-  "keywords": [ "bluemix", "bx" ],
+  "keywords": [
+    "bluemix",
+    "bx"
+  ],
   "author": "phucanhapril <github.com/phucanhapril>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "1.0.2",
+    "inquirer": "3.3.0"
+  }
 }
