@@ -3,7 +3,7 @@
 
 const Inquirer = require('inquirer');
 const { spawn } = require('child_process');
-const { name, version } = require('../package.json');
+const { name, version } = require(`${process.cwd()}/package.json`);
 
 const shell = (file, env) => {
   return new Promise((resolve, reject) => {
