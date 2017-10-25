@@ -23,10 +23,9 @@ const shell = (file, env) => {
 
 (async() => {
   try {
-    // TODO change arg length & dir root for use as npm package
     if (process.argv.length < 3)
       throw 'ArgumentError: You must provide the path to your bluemix config file, for example \'ezbx bx-config.json\''
-    const configFile = require(`../${process.argv[2]}`);
+    const configFile = require(`${process.cwd()}/${process.argv[2]}`);
 
     // Prompt for action, i.e. deploy or route
     const { action } = await Inquirer.prompt([{
@@ -130,15 +129,14 @@ const shell = (file, env) => {
     // Login then run action, i.e. deploy or route the app
     let exitCode;
     const start = Date.now();
-    // TODO find route from node_modules
-    await shell('./ezbx/login.sh', {
+    await shell(`${__dirname}/login.sh`, {
       'API': config.apiEndpoint,
       'ORGANIZATION': config.orgName,
       'SPACE': config.spaceName,
       'USE_SSO': config.sso
     });
     if (action === 'deploy') {
-      exitCode = await shell('./ezbx/deploy.sh', {
+      exitCode = await shell(`${__dirname}/deploy.sh`, {
         'APP_NAME': appName,
         'BUILD_CMD': config.buildCommand || buildCommand,
         'BUILD_DIR': config.buildDirectory || buildDirectory,
@@ -148,7 +146,7 @@ const shell = (file, env) => {
     }
     else if (action === 'route') {
       for (const route of config.route) {
-        exitCode = await shell('./ezbx/route.sh', {
+        exitCode = await shell(`${__dirname}/route.sh`, {
           'APP_NAME': appName,
           'OLD_APP_NAME': oldAppName || null,
           'DOMAIN': route.domain,

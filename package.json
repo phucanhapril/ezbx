@@ -1,15 +1,14 @@
 {
-  "name": "@phucanhapril/ezbx",
+  "name": "ezbx",
   "version": "1.0.0",
   "description": "Easy config for quick Bluemix app deploys",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "bluemix",
-    "bx"
-  ],
+  "bin": {
+    "ezbx": "bin/index.js"
+  },
+  "keywords": [ "bluemix", "bx" ],
   "author": "phucanhapril <github.com/phucanhapril>",
   "license": "ISC"
 }
